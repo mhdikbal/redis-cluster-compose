@@ -1,0 +1,84 @@
+version: '2'
+services:
+  redis-node-0:
+    image: docker.io/bitnami/redis-cluster:7.0
+    volumes:
+      - /Data/redis0:/bitnami/redis/data
+    ports:
+      - '6320:6379'      
+    environment:
+      - 'REDIS_PASSWORD=Sigmaess#2022'
+      - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
+
+  redis-node-1:
+    image: docker.io/bitnami/redis-cluster:7.0
+    volumes:
+      - /Data/redis1:/bitnami/redis/data
+    ports:
+      - '6221:6379'      
+    environment:
+      - 'REDIS_PASSWORD=Sigmaess#2022'
+      - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
+
+  redis-node-2:
+    image: docker.io/bitnami/redis-cluster:7.0
+    volumes:
+      - /Data/redis2:/bitnami/redis/data
+    ports:
+      - '6322:6379'     
+    environment:
+      - 'REDIS_PASSWORD=Sigmaess#2022'
+      - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
+
+  redis-node-3:
+    image: docker.io/bitnami/redis-cluster:7.0
+    volumes:
+      - /Data/redis3:/bitnami/redis/data
+    ports:
+      - '6323:6379'     
+    environment:
+      - 'REDIS_PASSWORD=Sigmaess#2022'
+      - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
+
+  redis-node-4:
+    image: docker.io/bitnami/redis-cluster:7.0
+    volumes:
+      - /Data/redis4:/bitnami/redis/data
+    ports:
+      - '6324:6379'      
+    environment:
+      - 'REDIS_PASSWORD=Sigmaess#2022'
+      - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
+
+  redis-node-5:
+    image: docker.io/bitnami/redis-cluster:7.0
+    volumes:
+      - /Data/redis5:/bitnami/redis/data
+    ports:
+      - '6325:6379'      
+    depends_on:
+      - redis-node-0
+      - redis-node-1
+      - redis-node-2
+      - redis-node-3
+      - redis-node-4
+    environment:
+      - 'REDIS_PASSWORD=Sigmaess#2022'
+      - 'REDISCLI_AUTH=Sigmaess#2022'
+      - 'REDIS_CLUSTER_REPLICAS=1'
+      - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
+      - 'REDIS_CLUSTER_CREATOR=yes'
+
+volumes:
+  redis0:
+    driver: local
+  redis1:
+    driver: local
+  redis2:
+    driver: local
+  redis3:
+    driver: local
+  redis4:
+    driver: local
+  redis5:
+    driver: local
